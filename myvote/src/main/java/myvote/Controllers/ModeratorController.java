@@ -55,13 +55,16 @@ public class ModeratorController {
     //Updating one moderator
     @RequestMapping(value="/moderators/{id}", method=RequestMethod.PUT)
     @ResponseBody
-    public ResponseEntity<JSONObject> putModerator(@Valid @RequestBody Moderator moderator, @PathVariable("id") int id, @RequestHeader(value="Authorization", required=false) String myHeader, BindingResult error){
+    public ResponseEntity<JSONObject> putModerator(@RequestBody Moderator moderator, @PathVariable("id") int id, @RequestHeader(value="Authorization", required=false) String myHeader){
     	
-    	checkValidModerator(moderator);
+    	//checkValidModerator(moderator);
     	checkAuthorization(myHeader);
-    	
-    	moderatorList.get(id).setEmail(moderator.getEmail());
-    	moderatorList.get(id).setPassword(moderator.getPassword());
+    	if(moderator.getName() != null)
+    		moderatorList.get(id).setName(moderator.getName());
+    	if(moderator.getEmail() != null)
+    		moderatorList.get(id).setEmail(moderator.getEmail());
+    	if(moderator.getPassword() != null)
+    		moderatorList.get(id).setPassword(moderator.getPassword());
         
         return new ResponseEntity<JSONObject>(moderatorList.get(id).getModerator(), HttpStatus.CREATED);
     }
@@ -181,13 +184,13 @@ public class ModeratorController {
     }
     
     public void checkAuthorization(String myHeader){
-    	if(myHeader == null || (!myHeader.equals("Basic Zm9vOnBhc3N3b3Jk"))){
+    	if(myHeader == null || (!myHeader.equals("Basic Zm9vOmJhcg=="))){
     		throw new MyAuthenticationException();
     	}
     }
     
     public void checkValidModerator(Moderator moderator){
-    	if(moderator.getEmail() == null || moderator.getPassword() == null){
+    	if(moderator.getEmail() == null || moderator.getPassword() == null || moderator.getName() == null){
     		throw new MyInvalidParameterException();
     	}
     }
