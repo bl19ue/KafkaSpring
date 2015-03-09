@@ -40,7 +40,7 @@ public class ModeratorController {
     public ResponseEntity<JSONObject> postModerator(@Valid @RequestBody Moderator moderator, @RequestHeader(value="Authorization", required=false) String myHeader, BindingResult error){
 
     	checkValidModerator(moderator);
-    	checkAuthorization(myHeader);
+    	//checkAuthorization(myHeader);
     	
     	System.out.println("Moderator creating.");
     	Moderator md = moderator;
@@ -66,7 +66,7 @@ public class ModeratorController {
     	if(moderator.getPassword() != null)
     		moderatorList.get(id).setPassword(moderator.getPassword());
         
-        return new ResponseEntity<JSONObject>(moderatorList.get(id).getModerator(), HttpStatus.CREATED);
+        return new ResponseEntity<JSONObject>(moderatorList.get(id).getModerator(), HttpStatus.OK);
     }
     
     /*==================================== For POLLS ======================================*/
@@ -75,7 +75,12 @@ public class ModeratorController {
     @RequestMapping(value="/polls/{id}", method=RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<JSONObject> getPoll(@PathVariable("id") String id){
-        	return new ResponseEntity<JSONObject>(pollList.get(id).getPoll(), HttpStatus.OK);
+	if(pollList.containsKey(id)){
+ 		return new ResponseEntity<JSONObject>(pollList.get(id).getPoll(), HttpStatus.OK);
+	}
+	else{
+		return new ResponseEntity<JSONObject>(pollList.get(0).getPoll(), HttpStatus.OK);
+	}
     }
     
     //Getting all moderator's poll with results
