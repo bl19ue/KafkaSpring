@@ -95,7 +95,7 @@ public class Polls {
 		jsonObj.put("question", this.question);
 		jsonObj.put("started_at", this.started_at);
 		jsonObj.put("expired_at", this.expired_at);
-		jsonObj.put("choice", this.choice);
+		jsonObj.put("choices", this.choice);
 		
 		return jsonObj;
 		//return jsonObj;
@@ -108,7 +108,7 @@ public class Polls {
 		jsonObj.put("question", this.question);
 		jsonObj.put("started_at", this.started_at);
 		jsonObj.put("expired_at", this.started_at);
-		jsonObj.put("choice", this.choice);
+		jsonObj.put("choices", this.choice);
 		jsonObj.put("results", this.results);
 		
 		return jsonObj;
