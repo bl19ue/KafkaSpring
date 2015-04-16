@@ -1,0 +1,34 @@
+package myvote.controllers;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
+import myvote.dao.PollsDAO;
+import myvote.dao.PollsDAOImpl;
+import myvote.models.Polls;
+
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
+
+@Component
+public class ScheduledTasks {
+	private PollsDAO pollsDAO = new PollsDAOImpl();
+    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+
+//    @Scheduled(fixedRate = 5000)
+//    public void reportCurrentTime() {
+//        System.out.println("The time is now " + dateFormat.format(new Date()));
+//    }
+    
+    @Scheduled(fixedRate = 120000)
+    public void reportExpiredPolls(){
+    	List<Polls> expiredPoll = pollsDAO.findExpiredPolls();
+    	if(expiredPoll.isEmpty()){
+    		return;
+    	}
+    	for(Polls poll : expiredPoll){
+    		System.out.println(poll.getQuestion());
+    	}
+    }
+}

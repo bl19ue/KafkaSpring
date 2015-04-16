@@ -1,0 +1,5 @@
+package myvote.security;
+
+public class WebSecurityConfig {
+
+}

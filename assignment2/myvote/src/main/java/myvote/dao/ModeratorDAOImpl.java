@@ -1,6 +1,7 @@
 package myvote.dao;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -25,6 +26,16 @@ public class ModeratorDAOImpl implements ModeratorDAO{
     
 	@Override
 	public void create(Moderator moderator) {
+		Query query = new Query().limit(1);
+		query.with(new Sort(Sort.Direction.DESC, "id"));
+		Moderator newmd = mongoOps.findOne(query, Moderator.class, MODERATOR_COLLECTION);
+		if(newmd == null)
+			moderator.setID(11111);
+		else{
+			int newmdId = newmd.getID()+1;
+			System.out.println("new mod id = " + newmdId);
+			moderator.setID(newmdId);
+		}
 		mongoOps.insert(moderator, MODERATOR_COLLECTION);
 	}
 

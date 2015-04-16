@@ -30,7 +30,7 @@ repositories {
 
 
 dependencies {
-compile("org.springframework.boot:spring-boot-starter-web")
+	compile("org.springframework.boot:spring-boot-starter-web")
     compile("com.fasterxml.jackson.core:jackson-databind")
     compile("org.springframework.hateoas:spring-hateoas")
     compile("org.springframework.plugin:spring-plugin-core:1.1.0.RELEASE")
@@ -38,6 +38,10 @@ compile("org.springframework.boot:spring-boot-starter-web")
     compile("org.json:json:20090211")
     compile("com.googlecode.json-simple:json-simple:1.1")
     compile("org.springframework.boot:spring-boot-starter-data-mongodb")
+    compile("org.springframework.security:spring-security-web:4.0.0.RELEASE")
+    compile("org.springframework.boot:spring-boot-starter-security")
+    compile('org.apache.kafka:kafka_2.10:0.8.2.1')
+    compile('org.springframework:spring-context-support:4.1.5.RELEASE')
     testCompile("org.springframework.boot:spring-boot-starter-test") 
 }
 
@@ -51,4 +55,8 @@ eclipse {
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.3'
+}
+
+configurations.all{
+	exclude module: 'sl4j-log4j12'
 }

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;myvote.kafka.PollKafkaProducer&apos; to &apos;PollKafkaConsumer&apos;&#x0A;- Original project: &apos;myvote&apos;&#x0A;- Original element: &apos;myvote.kafka.PollKafkaProducer&apos;&#x0A;- Renamed element: &apos;myvote.kafka.PollKafkaConsumer&apos;&#x0A;- Update references to refactored element&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;PollKafkaProducer&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src\/main\/java&lt;myvote.kafka{PollKafkaProducer.java[PollKafkaProducer" matchStrategy="1" name="PollKafkaConsumer" qualified="false" references="true" similarDeclarations="false" stamp="1429060402183" textual="false" version="1.0"/>
+</session>

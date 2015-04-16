@@ -27,8 +27,14 @@ private static long new_id = 9223372036L;
 	@JsonView(ArrayList.class)
 	private ArrayList<Integer> results;
 	
-	public static String getNewId(){
-		return Long.toString(++new_id, 36);
+	@JsonView(Boolean.class)
+	private boolean message_sent;
+	
+	@JsonView(Integer.class)
+	private int moderatorId;
+	
+	public static String getNewId(Long thisNewId){
+		return Long.toString(thisNewId, 36);
 	}
 	
 	public String getID(){
@@ -89,4 +95,22 @@ private static long new_id = 9223372036L;
 		int val = results.get(index);
 		results.set(index, ++val);
 	}
+	
+	
+	public void setMessageSent(boolean yesNo){
+		this.message_sent = yesNo;
+	}
+	
+	public Boolean getMessageSent(){
+		return this.message_sent;
+	}
+
+	public int getModeratorId() {
+		return moderatorId;
+	}
+
+	public void setModeratorId(int moderatorId) {
+		this.moderatorId = moderatorId;
+	}
+	
 }

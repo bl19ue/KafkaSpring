@@ -48,7 +48,7 @@ public class ModeratorController {
     	
     	System.out.println("Creating moderator");
     	Moderator md = moderator;
-    	md.setID(Moderator.getNewID());
+    	//md.setID(Moderator.getNewID());
     	md.setCreatedAt();
     	
     	moderatorDAO.create(moderator);
@@ -116,7 +116,6 @@ public class ModeratorController {
     	checkValidPoll(poll);
     	System.out.println("Poll creating.");
     	Polls pl = poll;
-    	pl.setID(Polls.getNewId());
     	int size = pl.getChoices().size();
     	
     	ArrayList<Integer> results = new ArrayList<Integer>();
@@ -125,6 +124,7 @@ public class ModeratorController {
     	}
     	
     	pl.setResults(results);
+    	pl.setMessageSent(false);
     	
     	pollsDAO.create(pl, moderator_id);
     	

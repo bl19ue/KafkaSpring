@@ -1,0 +1,5 @@
+package myvote.controllers;
+
+public class ScheduledTasks {
+
+}

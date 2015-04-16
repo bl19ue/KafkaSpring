@@ -1,0 +1,5 @@
+package myvote.kafka;
+
+public class PollKafkaProducer {
+
+}
