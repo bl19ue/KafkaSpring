@@ -10,7 +10,7 @@ import com.mongodb.MongoClient;
 @Configuration
 public class SpringMongoBean {
 	public @Bean MongoTemplate mongoTemplate() throws Exception{
-		MongoTemplate mongoTemplate = new MongoTemplate(new MongoClient("ds061148.mongolab.com:61148"), "myvote", new UserCredentials("sumit", "sumit"));
+		MongoTemplate mongoTemplate = new MongoTemplate(new MongoClient("ds061148.mongolab.com:61148"), "myvote", new UserCredentials("", ""));
 		return mongoTemplate;
 	}
 }
